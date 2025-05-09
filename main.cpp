@@ -8,7 +8,7 @@
 #include <cstdint>
 #include <chrono>
 
-#define QR_COUNT 500
+#define QR_COUNT 1
 #define QR_VERSION 1
 #define QR_SIZE (QR_VERSION * 4 + 17)
 #define QR_SCALE 8
@@ -24,9 +24,10 @@ void save_image(const uint8_t *image, int index) {
 
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
-    std::vector<std::string> inputs;
+    
+    std::vector<std::string> inputs(QR_COUNT);
     for (int i = 0; i < QR_COUNT; ++i) {
-        inputs.push_back("QRCode #" + std::to_string(i + 1));
+        inputs[i] = "QRCode #" + std::to_string(i + 1);
     }
 
     std::vector<uint8_t> modules(QR_COUNT * QR_SIZE * QR_SIZE);
